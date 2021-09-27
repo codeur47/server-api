@@ -28,9 +28,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
-@ContextConfiguration(classes = {ServerServiceImpl.class})
-@ActiveProfiles("dev")
-@TestPropertySource(locations = "classpath:./application-dev.properties")
+@ContextConfiguration(classes = {ServerServiceImpl.class, InMemoryDatabaseConfig.class})
 @ExtendWith(SpringExtension.class)
 class ServerServiceImplTest {
     @MockBean
