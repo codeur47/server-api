@@ -22,11 +22,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 @ContextConfiguration(classes = {ServerServiceImpl.class})
+@ActiveProfiles("dev")
+@TestPropertySource(locations = "classpath:./application-dev.properties")
 @ExtendWith(SpringExtension.class)
 class ServerServiceImplTest {
     @MockBean
