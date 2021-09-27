@@ -26,7 +26,7 @@ import org.springframework.http.ResponseEntity;
 
 class ServerControllerTest {
     @Test
-    void testGetServers() throws InterruptedException {
+    void testGetServers() {
         ServerRepo serverRepo = mock(ServerRepo.class);
         when(serverRepo.findAll((org.springframework.data.domain.Pageable) any()))
                 .thenReturn(new PageImpl<Server>(new ArrayList<Server>()));
