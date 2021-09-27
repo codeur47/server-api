@@ -15,6 +15,13 @@
 	<description>CRUD Application to manage servers</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<code.coverage.exclusions>
+			**/com/yorosoft/serverapi/model/**,
+			**/com/yorosoft/serverapi/config/**,
+			**/com/yorosoft/serverapi/repository/**,
+			**/com/yorosoft/serverapi/service/ServerService.java,
+			**/com/yorosoft/eexpensecrudapi/EExpenseCrudApiApplication.java
+		</code.coverage.exclusions>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -70,7 +77,66 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<id>default-prepare-agent</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>default-report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
-
+	<profiles>
+		<profile>
+			<id>sonar</id>
+			<properties>
+				<sonar.sources>.</sonar.sources>
+				<sonar.inclusions>src/main/java/**,src/main/resources/**</sonar.inclusions>
+				<sonar.exclusions>${code.coverage.exclusions}</sonar.exclusions>
+				<sonar.projectKey>codeur47_server-api</sonar.projectKey>
+				<sonar.organization>codeur47</sonar.organization>
+				<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+			</properties>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.sonarsource.scanner.maven</groupId>
+						<artifactId>sonar-maven-plugin</artifactId>
+						<version>3.7.0.1746</version>
+						<executions>
+							<execution>
+								<phase>verify</phase>
+								<goals>
+									<goal>sonar</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+	<distributionManagement>
+		<repository>
+			<id>github</id>
+			<name>CRUD Application for manager servers</name>
+			<url>https://maven.pkg.github.com/codeur47/server-api</url>
+		</repository>
+	</distributionManagement>
 </project>
