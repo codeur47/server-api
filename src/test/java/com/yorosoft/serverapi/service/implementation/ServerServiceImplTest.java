@@ -7,6 +7,7 @@ import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import com.yorosoft.serverapi.config.InMemoryDatabaseConfig;
 import com.yorosoft.serverapi.enumeration.Status;
 import com.yorosoft.serverapi.model.Server;
 import com.yorosoft.serverapi.repository.ServerRepo;
@@ -18,10 +19,12 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 @ContextConfiguration(classes = {ServerServiceImpl.class})
 @ExtendWith(SpringExtension.class)
