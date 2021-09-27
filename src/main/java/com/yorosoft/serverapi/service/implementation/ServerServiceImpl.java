@@ -31,6 +31,7 @@ public class ServerServiceImpl implements ServerService {
     @Override
     public Server create(Server server) {
         log.info("Saving new server: {}", server.getName());
+        log.info("Testing Automation deployment: {}", server.getName());
         return serverRepo.save(server);
     }
 
